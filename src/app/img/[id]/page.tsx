@@ -8,5 +8,9 @@ export default function ImgModal({
   const idAsNumber = Number(photoId);
   if (Number.isNaN(idAsNumber)) throw new Error("Invalid ID");
 
-  return <FullPageImageView id={idAsNumber} />;
+  return (
+    <div className="h-full">
+      <FullPageImageView id={idAsNumber} />
+    </div>
+  );
 }
