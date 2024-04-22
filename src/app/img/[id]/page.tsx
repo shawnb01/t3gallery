@@ -1,4 +1,3 @@
-import { Modal } from "./modal";
 import FullPageImageView from "~/components/full-image-page";
 
 export default function ImgModal({
@@ -9,9 +8,5 @@ export default function ImgModal({
   const idAsNumber = Number(photoId);
   if (Number.isNaN(idAsNumber)) throw new Error("Invalid ID");
 
-  return (
-    <Modal>
-      <FullPageImageView id={idAsNumber} />
-    </Modal>
-  );
+  return <FullPageImageView id={idAsNumber} />;
 }
