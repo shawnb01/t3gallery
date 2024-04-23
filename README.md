@@ -18,3 +18,10 @@
 - [x] Analytics (w/ PostHog)
 - [x] Delete button (w/ Server Actions)
 - [x] Rate limiting
+
+## Challengs to accomplish
+
+- Fix page layout for images of different resolutions
+- "selecting" images on the gallery page
+- "infinite scroll"
+- Folders/Albums
