@@ -15,6 +15,6 @@
 - [x] Routing/image page
 - [x] Make upload button look better
 - [x] Add shadcn/ui
-- [ ] Delete button (w/ Server Actions)
-- [ ] Analytics
+- [x] Analytics (w/ PostHog)
+- [x] Delete button (w/ Server Actions)
 - [ ] Rate limiting
