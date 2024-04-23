@@ -13,6 +13,8 @@
 - [x] Use Next/Image component
 - [x] Error Management
 - [x] Routing/image page
+- [x] Make upload button look better
+- [x] Add shadcn/ui
 - [ ] Delete button (w/ Server Actions)
 - [ ] Analytics
 - [ ] Rate limiting

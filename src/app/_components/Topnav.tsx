@@ -3,7 +3,7 @@ import UploadThingButton from "./UploadThingButton";
 
 export function TopNav() {
   return (
-    <nav className="flex w-full justify-between gap-4 border-b bg-gray-800 p-4 text-xl font-semibold">
+    <nav className="flex w-full justify-between gap-4 border-b p-4 text-xl font-semibold">
       <div>Gallery</div>
 
       <div>
