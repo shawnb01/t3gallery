@@ -89,6 +89,10 @@ export default function UploadThingButton() {
         },
       );
     },
+    onUploadError() {
+      toast.dismiss("uploading-toast");
+      toast.error("Upload failed");
+    },
     onClientUploadComplete() {
       toast.dismiss("uploading-toast");
       toast("Upload complete!");
