@@ -17,4 +17,4 @@
 - [x] Add shadcn/ui
 - [x] Analytics (w/ PostHog)
 - [x] Delete button (w/ Server Actions)
-- [ ] Rate limiting
+- [x] Rate limiting
