@@ -28,9 +28,9 @@ export const ourFileRouter = {
       }
 
       const fileOverrides = files.map((file) => {
-        const newName = sluggify(file.name);
+        // const newName = sluggify(file.name);
         const myIdentifier = generateId();
-        return { ...file, name: newName, customId: myIdentifier };
+        return { ...file, /*name: newName,*/ customId: myIdentifier };
       });
 
       return { userId: user.userId, [UTFiles]: fileOverrides };
@@ -41,10 +41,10 @@ export const ourFileRouter = {
       if (!file.customId) throw new Error("No customId found on file");
 
       await db.insert(images).values({
+        id: file.customId,
         name: file.name,
         url: file.url,
         userId: metadata.userId,
-        utCustomId: file.customId,
       });
 
       return { uploadedBy: metadata.userId };

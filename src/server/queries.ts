@@ -19,7 +19,7 @@ export async function getMyImages() {
   return images;
 }
 
-export async function getImage(id: number) {
+export async function getImage(id: string) {
   const user = auth();
 
   if (!user.userId) throw new Error("Unauthorized");
@@ -35,7 +35,7 @@ export async function getImage(id: number) {
   return image;
 }
 
-export async function deleteImage(id: number) {
+export async function deleteImage(id: string) {
   const user = auth();
   if (!user.userId) throw new Error("Unauthorized");
 
@@ -49,7 +49,7 @@ export async function deleteImage(id: number) {
     .delete(images)
     .where(and(eq(images.id, id), eq(images.userId, user.userId)));
 
-  await utapi.deleteFiles(image.utCustomId, { keyType: "customId" });
+  await utapi.deleteFiles(image.id, { keyType: "customId" });
 
   analyticsServerClient.capture({
     distinctId: user.userId,
