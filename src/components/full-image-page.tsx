@@ -8,12 +8,24 @@ export default async function FullPageImageView(props: { id: string }) {
   const uploaderInfo = await clerkClient.users.getUser(image.userId);
 
   return (
-    <div className="flex h-full w-full min-w-0">
-      <div className="flex flex-shrink items-center justify-center">
-        <img src={image.url} className="flex-shrink object-contain" />
+    <div className="relative flex h-full min-h-0 w-full min-w-0">
+      <div
+        className="flex-shrink"
+        style={{ height: "100dvh", width: "100dvw" }}
+      >
+        {/* Make the parent div background-url = image.url
+            Below img will have opacity 0 and will match the parent div's size
+        */}
+        <div
+          className="flex h-full flex-col items-center justify-center bg-contain bg-center bg-no-repeat"
+          style={{ backgroundImage: `url(${image.url})` }}
+        >
+          <img src={image.url} className="object-contain opacity-0" />
+        </div>
       </div>
 
-      <div className="flex w-48 flex-shrink-0 flex-col border-l">
+      {/* TODO: Add query selector to auto-hide info and pop out button to show/hide the info */}
+      <div className="flex w-96 flex-shrink-0 flex-col border-l">
         <div className="border-b p-2 text-center text-lg">{image.name}</div>
         <div className="p-2">
           <div>Image ID:</div>
