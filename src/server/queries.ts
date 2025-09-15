@@ -1,8 +1,6 @@
 import "server-only";
 import { db } from "./db";
 import { auth } from "@clerk/nextjs/server";
-import { images } from "./db/schema";
-import { and, eq } from "drizzle-orm";
 import { redirect } from "next/navigation";
 import analyticsServerClient from "./analytics";
 import { utapi } from "./uploadthing";
@@ -12,9 +10,13 @@ export async function getMyImages() {
 
   if (!user.userId) throw new Error("Unauthorized");
 
-  const images = await db.query.images.findMany({
-    where: (model, { eq }) => eq(model.userId, user.userId),
-    orderBy: (model, { asc }) => asc(model.id),
+  const images = await db.image.findMany({
+    where: {
+      userId: user.userId,
+    },
+    orderBy: {
+      id: "asc",
+    },
   });
   return images;
 }
@@ -24,8 +26,10 @@ export async function getImage(id: string) {
 
   if (!user.userId) throw new Error("Unauthorized");
 
-  const image = await db.query.images.findFirst({
-    where: (model, { eq }) => eq(model.id, id),
+  const image = await db.image.findFirst({
+    where: {
+      id: id,
+    },
   });
 
   if (!image) throw new Error("Not found");
@@ -39,15 +43,20 @@ export async function deleteImage(id: string) {
   const user = auth();
   if (!user.userId) throw new Error("Unauthorized");
 
-  const image = await db.query.images.findFirst({
-    where: (model, { eq }) => eq(model.id, id),
+  const image = await db.image.findFirst({
+    where: {
+      id: id,
+    },
   });
 
   if (!image) throw new Error("Not found");
 
-  await db
-    .delete(images)
-    .where(and(eq(images.id, id), eq(images.userId, user.userId)));
+  await db.image.delete({
+    where: {
+      id: id,
+      userId: user.userId,
+    },
+  });
 
   await utapi.deleteFiles(image.id, { keyType: "customId" });
 

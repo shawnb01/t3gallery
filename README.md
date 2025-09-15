@@ -21,7 +21,7 @@
 
 ## Challengs to accomplish
 
-- Fix page layout for images of different resolutions
+- [x] Fix page layout for images of different resolutions
 - "selecting" images on the gallery page
 - "infinite scroll"
 - Folders/Albums

@@ -9,10 +9,7 @@ export default async function FullPageImageView(props: { id: string }) {
 
   return (
     <div className="relative flex h-full min-h-0 w-full min-w-0">
-      <div
-        className="flex-shrink"
-        style={{ height: "100dvh", width: "100dvw" }}
-      >
+      <div className="flex-shrink" style={{ width: "100dvw" }}>
         {/* Make the parent div background-url = image.url
             Below img will have opacity 0 and will match the parent div's size
         */}

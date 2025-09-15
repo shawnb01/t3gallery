@@ -2,9 +2,8 @@ import { auth, clerkClient } from "@clerk/nextjs/server";
 import { createUploadthing, type FileRouter } from "uploadthing/next";
 import { UTFiles, UploadThingError } from "uploadthing/server";
 import { db } from "~/server/db";
-import { images } from "~/server/db/schema";
 import { ratelimit } from "~/server/ratelimit";
-import { generateId, sluggify } from "~/utils/helpers";
+import { generateId } from "~/utils/helpers";
 
 const f = createUploadthing();
 
@@ -40,11 +39,13 @@ export const ourFileRouter = {
 
       if (!file.customId) throw new Error("No customId found on file");
 
-      await db.insert(images).values({
-        id: file.customId,
-        name: file.name,
-        url: file.url,
-        userId: metadata.userId,
+      await db.image.create({
+        data: {
+          id: file.customId,
+          name: file.name,
+          url: file.url,
+          userId: metadata.userId,
+        },
       });
 
       return { uploadedBy: metadata.userId };

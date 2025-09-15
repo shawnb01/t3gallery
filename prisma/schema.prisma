@@ -1,0 +1,23 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("POSTGRES_URL")
+}
+
+model Image {
+  id        String   @id @db.VarChar(256)
+  name      String   @db.VarChar(256)
+  url       String   @db.VarChar(1024)
+  userId    String   @db.VarChar(256)
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime? @updatedAt
+
+  @@map("t3gallery_image")
+  @@index([name], map: "name_idx")
+}
