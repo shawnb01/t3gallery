@@ -17,6 +17,7 @@ model Image {
   userId    String   @db.VarChar(256)
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime? @updatedAt
+  private   Boolean  @default(true)
 
   @@map("t3gallery_image")
   @@index([name], map: "name_idx")
