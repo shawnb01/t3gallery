@@ -18,7 +18,7 @@ export async function getAllImages() {
 }
 
 export async function getMyImages() {
-  const user = auth();
+  const user = await auth();
 
   if (!user.userId) throw new Error("Unauthorized");
 
@@ -34,7 +34,7 @@ export async function getMyImages() {
 }
 
 export async function getImage(id: string) {
-  const user = auth();
+  const user = await auth();
   const image = await db.image.findFirst({
     where: {
       id: id,
@@ -54,7 +54,7 @@ export async function getImage(id: string) {
 }
 
 export async function toggleImagePrivacy(id: string, currentPrivacy: boolean) {
-  const user = auth();
+  const user = await auth();
   if (!user.userId) throw new Error("Unauthorized");
 
   const image = await db.image.findFirst({
@@ -88,7 +88,7 @@ export async function toggleImagePrivacy(id: string, currentPrivacy: boolean) {
 }
 
 export async function deleteImage(id: string) {
-  const user = auth();
+  const user = await auth();
   if (!user.userId) throw new Error("Unauthorized");
 
   const image = await db.image.findFirst({

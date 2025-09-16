@@ -11,7 +11,7 @@ export async function toggleImagePrivacyAction(formData: FormData) {
   const imageId = formData.get("imageId") as string;
   const currentPrivacy = formData.get("currentPrivacy") === "true";
 
-  const user = auth();
+  const user = await auth();
   if (!user.userId) throw new Error("Unauthorized");
 
   const image = await db.image.findFirst({
@@ -65,7 +65,7 @@ export async function toggleImagePrivacyAction(formData: FormData) {
 export async function deleteImageAction(formData: FormData) {
   const imageId = formData.get("imageId") as string;
   
-  const user = auth();
+  const user = await auth();
   if (!user.userId) throw new Error("Unauthorized");
 
   const image = await db.image.findFirst({

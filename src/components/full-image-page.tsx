@@ -5,7 +5,8 @@ import { Button } from "./ui/button";
 
 export default async function FullPageImageView(props: { id: string }) {
   const image = await getImage(props.id);
-  const uploaderInfo = await clerkClient.users.getUser(image.userId);
+  const clerk = await clerkClient();
+  const uploaderInfo = await clerk.users.getUser(image.userId);
 
   const currentUserData = await currentUser();
   let isOwner: boolean;
